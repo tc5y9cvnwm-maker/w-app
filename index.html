@@ -11,206 +11,237 @@
 <link rel="apple-touch-icon" href="icon-192.png">
 <title>Workout Wonder Wheel</title>
 <style>
-  html { color-scheme: dark only; }
   * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; user-select: none; }
 
+  /* ── DARK THEME (Gym) — default ── */
+  :root {
+    --bg:           #111111;
+    --surface:      #1A1A1A;
+    --surface2:     #111111;
+    --border:       #1E1E1E;
+    --text:         #F0EDE8;
+    --text2:        #6B7A80;
+    --text3:        #3A3A3A;
+    --gold:         #D4A843;
+    --teal:         #2A9D8F;
+    --divider:      #1E1E1E;
+    --input-bg:     #111111;
+    --input-border: #2A2A2A;
+    --pill-bg:      #222222;
+    --empty-color:  #2A2A2A;
+    --toggle-bg:    #1A1A1A;
+    --scheme:       dark;
+
+    /* position card backgrounds — dark */
+    --push-bg:   #1C1512;
+    --pull-bg:   #101C1B;
+    --post-bg:   #1C1A10;
+    --carry-bg:  #16131C;
+    --core-bg:   #101812;
+
+    --push-border:  rgba(224,122,95,0.18);
+    --pull-border:  rgba(42,157,143,0.18);
+    --post-border:  rgba(212,168,67,0.18);
+    --carry-border: rgba(155,127,212,0.18);
+    --core-border:  rgba(123,175,142,0.18);
+  }
+
+  /* ── LIGHT THEME (Park) ── */
+  body.park {
+    --bg:           #F7F4EF;
+    --surface:      #FFFFFF;
+    --surface2:     #F0EDE8;
+    --border:       rgba(0,0,0,0.07);
+    --text:         #1C1917;
+    --text2:        #57534E;
+    --text3:        #9CA3AF;
+    --gold:         #C8943A;
+    --teal:         #2A9D8F;
+    --divider:      rgba(0,0,0,0.07);
+    --input-bg:     #F7F4EF;
+    --input-border: rgba(0,0,0,0.1);
+    --pill-bg:      #F0EDE8;
+    --empty-color:  #C4B9AC;
+    --toggle-bg:    #FFFFFF;
+    --scheme:       light;
+
+    --push-bg:   #FDF1EE;
+    --pull-bg:   #E8F5F4;
+    --post-bg:   #FDF4E3;
+    --carry-bg:  #F2EEF9;
+    --core-bg:   #EDF5F0;
+
+    --push-border:  rgba(224,122,95,0.25);
+    --pull-border:  rgba(42,157,143,0.25);
+    --post-border:  rgba(200,148,58,0.25);
+    --carry-border: rgba(155,127,212,0.25);
+    --core-border:  rgba(123,175,142,0.25);
+  }
+
   body {
-    background: #111111;
-    color: #F0EDE8;
+    background: var(--bg);
+    color: var(--text);
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     min-height: 100vh;
     min-height: -webkit-fill-available;
     display: flex;
     justify-content: center;
     padding-bottom: env(safe-area-inset-bottom);
+    transition: background 0.3s, color 0.3s;
   }
 
   .page { max-width: 420px; width: 100%; padding: 48px 16px 80px; }
-  .divider { height: 1px; background: #1E1E1E; margin: 24px 0; }
+  .divider { height: 1px; background: var(--divider); margin: 24px 0; }
 
   /* Header */
   .header { text-align: center; margin-bottom: 24px; }
-  .w-mark { font-size: 52px; font-weight: 900; color: #D4A843; letter-spacing: -2px; line-height: 1; margin-bottom: 6px; }
-  .header-name { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #3A3A3A; font-weight: 700; margin-bottom: 4px; }
-  .header-sub { font-size: 12px; color: #3A3A3A; line-height: 1.5; }
+  .w-mark { font-size: 52px; font-weight: 900; color: var(--gold); letter-spacing: -2px; line-height: 1; margin-bottom: 6px; transition: color 0.3s; }
+  .header-name { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text3); font-weight: 700; margin-bottom: 4px; }
+  .header-sub { font-size: 12px; color: var(--text3); line-height: 1.5; }
 
   /* Location Toggle */
   .location-toggle {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-    margin-bottom: 20px;
-    background: #1A1A1A;
-    border-radius: 14px;
-    padding: 6px;
-    border: 1px solid #1E1E1E;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+    margin-bottom: 20px; background: var(--toggle-bg);
+    border-radius: 14px; padding: 6px; border: 1px solid var(--border);
+    transition: background 0.3s, border-color 0.3s;
   }
 
   .loc-btn {
-    border: none;
-    border-radius: 10px;
-    padding: 13px 8px;
-    font-size: 13px;
-    font-weight: 800;
-    letter-spacing: 0.06em;
-    cursor: pointer;
-    transition: all 0.2s;
-    background: transparent;
-    color: #3A3A3A;
+    border: none; border-radius: 10px; padding: 13px 8px;
+    font-size: 13px; font-weight: 800; letter-spacing: 0.06em;
+    cursor: pointer; transition: all 0.2s;
+    background: transparent; color: var(--text3);
   }
 
-  .loc-btn.active {
-    background: #D4A843;
-    color: #111;
-  }
+  .loc-btn.active { background: var(--gold); color: #111; }
 
-  .loc-badge {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 16px;
-  }
-
+  .loc-badge { display: flex; justify-content: center; margin-bottom: 16px; }
   .loc-pill {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 5px 14px;
-    border-radius: 20px;
-    background: rgba(212,168,67,0.12);
-    color: #D4A843;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; padding: 5px 14px; border-radius: 20px;
+    background: rgba(212,168,67,0.12); color: var(--gold);
+    transition: color 0.3s;
   }
 
   /* HR Zones */
   .zones { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-bottom: 20px; }
-  .zone { background: #1A1A1A; border-radius: 10px; padding: 10px 8px; text-align: center; border: 1px solid #1E1E1E; }
+  .zone { background: var(--surface); border-radius: 10px; padding: 10px 8px; text-align: center; border: 1px solid var(--border); transition: background 0.3s, border-color 0.3s; }
   .zone-bpm { font-size: 13px; font-weight: 800; line-height: 1; margin-bottom: 3px; }
-  .zone-label { font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: #3A3A3A; font-weight: 600; }
+  .zone-label { font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text3); font-weight: 600; }
 
   /* Spin All */
   .spin-all-btn {
-    width: 100%;
-    background: #D4A843;
-    color: #111;
-    border: none;
-    border-radius: 14px;
-    padding: 18px;
-    font-size: 15px;
-    font-weight: 900;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: transform 0.1s, opacity 0.1s;
+    width: 100%; background: var(--gold); color: #111; border: none;
+    border-radius: 14px; padding: 18px; font-size: 15px; font-weight: 900;
+    letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer;
+    transition: transform 0.1s, opacity 0.1s, background 0.3s;
     margin-bottom: 16px;
   }
-
   .spin-all-btn:active { transform: scale(0.97); opacity: 0.9; }
-  .spin-all-btn.spinning { background: #2A2A2A; color: #3A3A3A; }
+  .spin-all-btn.spinning { background: var(--surface); color: var(--text3); }
 
   /* Cards */
   .cards { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
-  .card { border-radius: 16px; border: 1px solid; overflow: hidden; }
+  .card { border-radius: 16px; border: 1px solid; overflow: hidden; transition: background 0.3s, border-color 0.3s; }
   .card-inner { padding: 16px 16px 14px; }
   .card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
   .position-badge { font-size: 9px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; }
-  .hr-badge { font-size: 10px; font-weight: 700; color: #3A3A3A; }
+  .hr-badge { font-size: 10px; font-weight: 700; color: var(--text3); }
   .exercise-name { font-size: 21px; font-weight: 900; line-height: 1.15; letter-spacing: -0.3px; min-height: 50px; display: flex; align-items: center; margin-bottom: 12px; transition: opacity 0.1s; }
   .exercise-name.cycling { opacity: 0.3; }
   .card-bottom { display: flex; align-items: center; justify-content: space-between; }
-  .tempo-note { font-size: 11px; color: #3A3A3A; line-height: 1.4; flex: 1; padding-right: 10px; }
+  .tempo-note { font-size: 11px; color: var(--text3); line-height: 1.4; flex: 1; padding-right: 10px; }
   .spin-btn { border: none; border-radius: 10px; padding: 10px 16px; font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; flex-shrink: 0; transition: transform 0.1s, opacity 0.1s; }
   .spin-btn:active { transform: scale(0.95); opacity: 0.8; }
   .spin-btn.spinning { opacity: 0.3; pointer-events: none; }
 
-  /* Position colors */
-  .push-card { background: #1C1512; border-color: rgba(224,122,95,0.18); }
+  /* Position colors — work on both dark and light */
+  .push-card { background: var(--push-bg); border-color: var(--push-border); }
   .push-badge { background: rgba(224,122,95,0.12); color: #E07A5F; }
   .push-name { color: #E07A5F; }
   .push-btn { background: rgba(224,122,95,0.12); color: #E07A5F; }
   .push-zone { color: #E07A5F; }
 
-  .pull-card { background: #101C1B; border-color: rgba(42,157,143,0.18); }
+  .pull-card { background: var(--pull-bg); border-color: var(--pull-border); }
   .pull-badge { background: rgba(42,157,143,0.12); color: #2A9D8F; }
   .pull-name { color: #2A9D8F; }
   .pull-btn { background: rgba(42,157,143,0.12); color: #2A9D8F; }
   .pull-zone { color: #2A9D8F; }
 
-  .post-card { background: #1C1A10; border-color: rgba(212,168,67,0.18); }
-  .post-badge { background: rgba(212,168,67,0.12); color: #D4A843; }
-  .post-name { color: #D4A843; }
-  .post-btn { background: rgba(212,168,67,0.12); color: #D4A843; }
-  .post-zone { color: #D4A843; }
+  .post-card { background: var(--post-bg); border-color: var(--post-border); }
+  .post-badge { background: rgba(212,168,67,0.12); color: #C8943A; }
+  .post-name { color: #C8943A; }
+  .post-btn { background: rgba(212,168,67,0.12); color: #C8943A; }
+  .post-zone { color: #C8943A; }
 
-  .carry-card { background: #16131C; border-color: rgba(155,127,212,0.18); }
+  .carry-card { background: var(--carry-bg); border-color: var(--carry-border); }
   .carry-badge { background: rgba(155,127,212,0.12); color: #9B7FD4; }
   .carry-name { color: #9B7FD4; }
   .carry-btn { background: rgba(155,127,212,0.12); color: #9B7FD4; }
   .carry-zone { color: #9B7FD4; }
 
-  .core-card { background: #101812; border-color: rgba(123,175,142,0.18); }
+  .core-card { background: var(--core-bg); border-color: var(--core-border); }
   .core-badge { background: rgba(123,175,142,0.12); color: #7BAF8E; }
   .core-name { color: #7BAF8E; }
   .core-btn { background: rgba(123,175,142,0.12); color: #7BAF8E; }
   .core-zone { color: #7BAF8E; }
 
   /* Summary */
-  .summary { background: #1A1A1A; border: 1px solid #1E1E1E; border-radius: 14px; padding: 18px 16px; margin-bottom: 16px; }
-  .summary-title { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #3A3A3A; font-weight: 700; margin-bottom: 12px; }
+  .summary { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px 16px; margin-bottom: 16px; transition: background 0.3s, border-color 0.3s; }
+  .summary-title { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text3); font-weight: 700; margin-bottom: 12px; }
   .summary-row { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 8px; }
   .summary-row:last-child { margin-bottom: 0; }
   .summary-pos { font-size: 9px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; min-width: 58px; padding-top: 2px; }
-  .summary-ex { font-size: 13px; font-weight: 700; color: #F0EDE8; line-height: 1.3; }
+  .summary-ex { font-size: 13px; font-weight: 700; color: var(--text); line-height: 1.3; }
 
   /* Rules */
-  .rules { background: #1A1A1A; border: 1px solid #1E1E1E; border-radius: 14px; padding: 16px; margin-bottom: 12px; }
-  .rules-title { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #3A3A3A; font-weight: 700; margin-bottom: 10px; }
-  .rule-row { display: flex; gap: 10px; margin-bottom: 6px; font-size: 11px; color: #3A3A3A; line-height: 1.5; align-items: flex-start; }
+  .rules { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px; margin-bottom: 12px; transition: background 0.3s, border-color 0.3s; }
+  .rules-title { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text3); font-weight: 700; margin-bottom: 10px; }
+  .rule-row { display: flex; gap: 10px; margin-bottom: 6px; font-size: 11px; color: var(--text3); line-height: 1.5; align-items: flex-start; }
   .rule-row:last-child { margin-bottom: 0; }
-  .rule-dot { width: 3px; height: 3px; border-radius: 50%; background: #3A3A3A; flex-shrink: 0; margin-top: 6px; }
+  .rule-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--text3); flex-shrink: 0; margin-top: 6px; }
 
   /* Log */
-  .log-card { background: #1A1A1A; border: 1px solid #1E1E1E; border-radius: 14px; padding: 18px 16px; margin-bottom: 12px; }
-  .log-title { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #3A3A3A; font-weight: 700; margin-bottom: 14px; }
+  .log-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px 16px; margin-bottom: 12px; transition: background 0.3s, border-color 0.3s; }
+  .log-title { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text3); font-weight: 700; margin-bottom: 14px; }
   .circuit-counter { display: flex; gap: 8px; align-items: center; margin-bottom: 16px; }
-  .circuit-counter-label { font-size: 11px; color: #3A3A3A; font-weight: 600; margin-right: 2px; }
-  .circuit-dot { width: 38px; height: 38px; border-radius: 50%; border: 2px solid #2A2A2A; background: #111; color: #3A3A3A; font-size: 13px; font-weight: 800; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.15s; flex-shrink: 0; }
-  .circuit-dot.done { background: #D4A843; border-color: #D4A843; color: #111; }
-  .note-label { font-size: 10px; color: #3A3A3A; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
-  .note-input { width: 100%; background: #111; border: 1px solid #2A2A2A; border-radius: 10px; padding: 12px 14px; font-size: 14px; color: #F0EDE8; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; resize: none; outline: none; line-height: 1.6; min-height: 68px; -webkit-user-select: text; user-select: text; }
-  .note-input:focus { border-color: #3A3A3A; }
-  .note-input::placeholder { color: #2A2A2A; }
-  .log-btn { width: 100%; background: #D4A843; color: #111; border: none; border-radius: 12px; padding: 16px; font-size: 14px; font-weight: 900; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; margin-top: 14px; transition: transform 0.1s, opacity 0.1s; }
+  .circuit-counter-label { font-size: 11px; color: var(--text3); font-weight: 600; margin-right: 2px; }
+  .circuit-dot { width: 38px; height: 38px; border-radius: 50%; border: 2px solid var(--border); background: var(--input-bg); color: var(--text3); font-size: 13px; font-weight: 800; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.15s; flex-shrink: 0; }
+  .circuit-dot.done { background: var(--gold); border-color: var(--gold); color: #111; }
+  .note-label { font-size: 10px; color: var(--text3); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+  .note-input { width: 100%; background: var(--input-bg); border: 1px solid var(--input-border); border-radius: 10px; padding: 12px 14px; font-size: 14px; color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; resize: none; outline: none; line-height: 1.6; min-height: 68px; -webkit-user-select: text; user-select: text; transition: background 0.3s, border-color 0.3s, color 0.3s; }
+  .note-input::placeholder { color: var(--text3); }
+  .log-btn { width: 100%; background: var(--gold); color: #111; border: none; border-radius: 12px; padding: 16px; font-size: 14px; font-weight: 900; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; margin-top: 14px; transition: transform 0.1s, opacity 0.1s, background 0.3s; }
   .log-btn:active { transform: scale(0.97); opacity: 0.9; }
 
   /* History */
-  .history-card { background: #1A1A1A; border: 1px solid #1E1E1E; border-radius: 14px; padding: 18px 16px; margin-bottom: 12px; }
+  .history-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px 16px; margin-bottom: 12px; transition: background 0.3s, border-color 0.3s; }
   .history-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
-  .history-title { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #3A3A3A; font-weight: 700; }
-  .clear-btn { font-size: 10px; color: #2A2A2A; background: none; border: none; cursor: pointer; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 0; }
-  .history-empty { font-size: 13px; color: #2A2A2A; text-align: center; padding: 16px 0; font-weight: 600; line-height: 1.6; }
-  .history-entry { border-bottom: 1px solid #1E1E1E; padding: 14px 0; }
+  .history-title { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text3); font-weight: 700; }
+  .clear-btn { font-size: 10px; color: var(--text3); background: none; border: none; cursor: pointer; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 0; }
+  .history-empty { font-size: 13px; color: var(--empty-color); text-align: center; padding: 16px 0; font-weight: 600; line-height: 1.6; }
+  .history-entry { border-bottom: 1px solid var(--border); padding: 14px 0; }
   .history-entry:first-child { padding-top: 0; }
   .history-entry:last-child { border-bottom: none; padding-bottom: 0; }
-  .history-meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
-  .history-date { font-size: 11px; font-weight: 700; color: #D4A843; }
-  .history-circuits { font-size: 11px; font-weight: 700; color: #3A3A3A; }
-  .history-loc { font-size: 10px; color: #3A3A3A; font-weight: 600; margin-bottom: 6px; }
+  .history-meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+  .history-date { font-size: 11px; font-weight: 700; color: var(--gold); }
+  .history-circuits { font-size: 11px; font-weight: 700; color: var(--text3); }
+  .history-loc { font-size: 10px; color: var(--text3); margin-bottom: 6px; font-weight: 600; }
   .history-moves { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 6px; }
-  .history-pill { font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 20px; background: #222; }
-  .history-note { font-size: 12px; color: #4A5568; font-style: italic; line-height: 1.55; margin-top: 4px; }
+  .history-pill { font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 20px; background: var(--pill-bg); }
+  .history-note { font-size: 12px; color: var(--text2); font-style: italic; line-height: 1.55; margin-top: 4px; }
 </style>
 </head>
 <body>
 <div class="page">
 
-  <!-- Header -->
   <div class="header">
     <div class="w-mark">W</div>
     <div class="header-name">Workout Wonder Wheel</div>
     <div class="header-sub">5 positions · 1 min each · 5 circuits<br>Walk the rest. Do the W.</div>
   </div>
 
-  <!-- Location Toggle -->
   <div class="location-toggle">
     <button class="loc-btn active" id="btn-gym" onclick="setMode('gym')">🏋️ Gym</button>
     <button class="loc-btn" id="btn-park" onclick="setMode('park')">🌳 Park</button>
@@ -220,126 +251,61 @@
     <span class="loc-pill" id="modePill">Gym Mode — Full Equipment</span>
   </div>
 
-  <!-- HR Zones -->
   <div class="zones">
-    <div class="zone">
-      <div class="zone-bpm" style="color:#7BAF8E">108–125</div>
-      <div class="zone-label">Fat Burn</div>
-    </div>
-    <div class="zone">
-      <div class="zone-bpm" style="color:#D4A843">125–141</div>
-      <div class="zone-label">Cardio</div>
-    </div>
-    <div class="zone">
-      <div class="zone-bpm" style="color:#E07A5F">141–149</div>
-      <div class="zone-label">Peak</div>
-    </div>
+    <div class="zone"><div class="zone-bpm" style="color:#7BAF8E">108–125</div><div class="zone-label">Fat Burn</div></div>
+    <div class="zone"><div class="zone-bpm" style="color:#D4A843">125–141</div><div class="zone-label">Cardio</div></div>
+    <div class="zone"><div class="zone-bpm" style="color:#E07A5F">141–149</div><div class="zone-label">Peak</div></div>
   </div>
 
-  <!-- Spin All -->
-  <button class="spin-all-btn" onclick="spinAll(this)" id="spinAllBtn">
-    ⚡ Spin All 5 Positions
-  </button>
+  <button class="spin-all-btn" onclick="spinAll(this)" id="spinAllBtn">⚡ Spin All 5 Positions</button>
 
-  <!-- Cards -->
   <div class="cards">
     <div class="card push-card">
       <div class="card-inner">
-        <div class="card-top">
-          <span class="position-badge push-badge">① Push</span>
-          <span class="hr-badge push-zone">125–135 BPM</span>
-        </div>
+        <div class="card-top"><span class="position-badge push-badge">① Push</span><span class="hr-badge push-zone">125–135 BPM</span></div>
         <div class="exercise-name push-name" id="name-push">Tap spin to begin</div>
-        <div class="card-bottom">
-          <div class="tempo-note">4 sec down · pause · explode up</div>
-          <button class="spin-btn push-btn" onclick="spinOne('push')">Spin</button>
-        </div>
+        <div class="card-bottom"><div class="tempo-note">4 sec down · pause · explode up</div><button class="spin-btn push-btn" onclick="spinOne('push')">Spin</button></div>
       </div>
     </div>
-
     <div class="card pull-card">
       <div class="card-inner">
-        <div class="card-top">
-          <span class="position-badge pull-badge">② Pull</span>
-          <span class="hr-badge pull-zone">125–135 BPM</span>
-        </div>
+        <div class="card-top"><span class="position-badge pull-badge">② Pull</span><span class="hr-badge pull-zone">125–135 BPM</span></div>
         <div class="exercise-name pull-name" id="name-pull">Tap spin to begin</div>
-        <div class="card-bottom">
-          <div class="tempo-note">4 sec release · squeeze · explode</div>
-          <button class="spin-btn pull-btn" onclick="spinOne('pull')">Spin</button>
-        </div>
+        <div class="card-bottom"><div class="tempo-note">4 sec release · squeeze · explode</div><button class="spin-btn pull-btn" onclick="spinOne('pull')">Spin</button></div>
       </div>
     </div>
-
     <div class="card post-card">
       <div class="card-inner">
-        <div class="card-top">
-          <span class="position-badge post-badge">③ Posterior</span>
-          <span class="hr-badge post-zone">135–149 BPM</span>
-        </div>
+        <div class="card-top"><span class="position-badge post-badge">③ Posterior</span><span class="hr-badge post-zone">135–149 BPM</span></div>
         <div class="exercise-name post-name" id="name-post">Tap spin to begin</div>
-        <div class="card-bottom">
-          <div class="tempo-note">Drive through heels — full hip extension</div>
-          <button class="spin-btn post-btn" onclick="spinOne('post')">Spin</button>
-        </div>
+        <div class="card-bottom"><div class="tempo-note">Drive through heels — full hip extension</div><button class="spin-btn post-btn" onclick="spinOne('post')">Spin</button></div>
       </div>
     </div>
-
     <div class="card carry-card">
       <div class="card-inner">
-        <div class="card-top">
-          <span class="position-badge carry-badge">④ Carry</span>
-          <span class="hr-badge carry-zone">108–125 BPM ↓</span>
-        </div>
+        <div class="card-top"><span class="position-badge carry-badge">④ Carry</span><span class="hr-badge carry-zone">108–125 BPM ↓</span></div>
         <div class="exercise-name carry-name" id="name-carry">Tap spin to begin</div>
-        <div class="card-bottom">
-          <div class="tempo-note">Walk the floor — let heart rate drop</div>
-          <button class="spin-btn carry-btn" onclick="spinOne('carry')">Spin</button>
-        </div>
+        <div class="card-bottom"><div class="tempo-note">Walk the floor — let heart rate drop</div><button class="spin-btn carry-btn" onclick="spinOne('carry')">Spin</button></div>
       </div>
     </div>
-
     <div class="card core-card">
       <div class="card-inner">
-        <div class="card-top">
-          <span class="position-badge core-badge">⑤ Core</span>
-          <span class="hr-badge core-zone">108–120 BPM</span>
-        </div>
+        <div class="card-top"><span class="position-badge core-badge">⑤ Core</span><span class="hr-badge core-zone">108–120 BPM</span></div>
         <div class="exercise-name core-name" id="name-core">Tap spin to begin</div>
-        <div class="card-bottom">
-          <div class="tempo-note">Stability and control — no crunch movements</div>
-          <button class="spin-btn core-btn" onclick="spinOne('core')">Spin</button>
-        </div>
+        <div class="card-bottom"><div class="tempo-note">Stability and control — no crunch movements</div><button class="spin-btn core-btn" onclick="spinOne('core')">Spin</button></div>
       </div>
     </div>
   </div>
 
-  <!-- Summary -->
   <div class="summary">
     <div class="summary-title">This Circuit</div>
-    <div class="summary-row">
-      <span class="summary-pos push-zone">Push</span>
-      <span class="summary-ex" id="sum-push">—</span>
-    </div>
-    <div class="summary-row">
-      <span class="summary-pos pull-zone">Pull</span>
-      <span class="summary-ex" id="sum-pull">—</span>
-    </div>
-    <div class="summary-row">
-      <span class="summary-pos post-zone">Posterior</span>
-      <span class="summary-ex" id="sum-post">—</span>
-    </div>
-    <div class="summary-row">
-      <span class="summary-pos carry-zone">Carry</span>
-      <span class="summary-ex" id="sum-carry">—</span>
-    </div>
-    <div class="summary-row">
-      <span class="summary-pos core-zone">Core</span>
-      <span class="summary-ex" id="sum-core">—</span>
-    </div>
+    <div class="summary-row"><span class="summary-pos push-zone">Push</span><span class="summary-ex" id="sum-push">—</span></div>
+    <div class="summary-row"><span class="summary-pos pull-zone">Pull</span><span class="summary-ex" id="sum-pull">—</span></div>
+    <div class="summary-row"><span class="summary-pos post-zone">Posterior</span><span class="summary-ex" id="sum-post">—</span></div>
+    <div class="summary-row"><span class="summary-pos carry-zone">Carry</span><span class="summary-ex" id="sum-carry">—</span></div>
+    <div class="summary-row"><span class="summary-pos core-zone">Core</span><span class="summary-ex" id="sum-core">—</span></div>
   </div>
 
-  <!-- Rules -->
   <div class="rules">
     <div class="rules-title">Circuit Rules</div>
     <div class="rule-row"><div class="rule-dot"></div>1 min per exercise — no breaks within circuit</div>
@@ -352,7 +318,6 @@
 
   <div class="divider"></div>
 
-  <!-- Log -->
   <div class="log-card">
     <div class="log-title">Log This Session</div>
     <div class="circuit-counter">
@@ -368,15 +333,12 @@
     <button class="log-btn" onclick="logSession()" id="logBtn">Save This Workout</button>
   </div>
 
-  <!-- History -->
   <div class="history-card">
     <div class="history-header">
       <div class="history-title">Session History</div>
       <button class="clear-btn" onclick="clearHistory()">Clear All</button>
     </div>
-    <div id="historyList">
-      <div class="history-empty">No sessions logged yet.<br>Your first one is next.</div>
-    </div>
+    <div id="historyList"><div class="history-empty">No sessions logged yet.<br>Your first one is next.</div></div>
   </div>
 
 </div>
@@ -385,111 +347,25 @@
     navigator.serviceWorker.register('sw.js').catch(() => {});
   }
 
-  // Movement libraries
   const gym = {
-    push: [
-      "Bench Incline Push-Up",
-      "Chest Press Machine",
-      "Dumbbell Shoulder Press",
-      "Band Chest Press",
-      "Dumbbell Chest Fly",
-      "Band Overhead Press",
-      "Cable Chest Press",
-      "Seated Dumbbell Shoulder Press"
-    ],
-    pull: [
-      "Lat Pulldown",
-      "Seated Cable Row",
-      "Single Arm Dumbbell Row",
-      "Resistance Band Row",
-      "Dumbbell Bent Over Row",
-      "Face Pull with Band",
-      "Kettlebell Upright Row",
-      "Band Pull-Apart"
-    ],
-    post: [
-      "Kettlebell Swing",
-      "Goblet Squat (Wide Stance)",
-      "Leg Press (Feet High)",
-      "Kettlebell Deadlift",
-      "Dumbbell Romanian Deadlift",
-      "Band Hip Hinge",
-      "Med Ball Squat to Press",
-      "Low Box Step-Up"
-    ],
-    carry: [
-      "Two Hand Farmer's Carry",
-      "Suitcase Carry (One Hand)",
-      "Medicine Ball Chest Carry",
-      "Bear Hug Carry (Med Ball)",
-      "Band Farmer's Walk"
-    ],
-    core: [
-      "Elevated Plank (On Bench)",
-      "Band Anti-Rotation Hold",
-      "Seated Med Ball Twist",
-      "Standing Band Chop",
-      "Pallof Press with Band",
-      "Standing Oblique Band Crunch",
-      "Cable Woodchop",
-      "Flutter Kicks",
-      "Shoulder Taps (Plank on Bench)",
-      "Side Plank (Floor)"
-    ]
+    push: ["Bench Incline Push-Up","Chest Press Machine","Dumbbell Shoulder Press","Band Chest Press","Dumbbell Chest Fly","Band Overhead Press","Cable Chest Press","Seated Dumbbell Shoulder Press"],
+    pull: ["Lat Pulldown","Seated Cable Row","Single Arm Dumbbell Row","Resistance Band Row","Dumbbell Bent Over Row","Face Pull with Band","Kettlebell Upright Row","Band Pull-Apart"],
+    post: ["Kettlebell Swing","Goblet Squat (Wide Stance)","Leg Press (Feet High)","Kettlebell Deadlift","Dumbbell Romanian Deadlift","Band Hip Hinge","Med Ball Squat to Press","Low Box Step-Up"],
+    carry: ["Two Hand Farmer's Carry","Suitcase Carry (One Hand)","Medicine Ball Chest Carry","Bear Hug Carry (Med Ball)","Band Farmer's Walk"],
+    core: ["Elevated Plank (On Bench)","Band Anti-Rotation Hold","Seated Med Ball Twist","Standing Band Chop","Pallof Press with Band","Standing Oblique Band Crunch","Cable Woodchop","Flutter Kicks","Shoulder Taps (Plank on Bench)","Side Plank (Floor)"]
   };
 
   const park = {
-    push: [
-      "Band Chest Press (Anchored)",
-      "Y-Bell Shoulder Press",
-      "Bench Incline Push-Up",
-      "Band Overhead Press",
-      "Y-Bell Chest Fly (On Bench)",
-      "Push-Up (Knees)",
-      "Y-Bell Arnold Press"
-    ],
-    pull: [
-      "Band Row (Anchored)",
-      "Y-Bell Bent Over Row",
-      "Band Pull-Apart",
-      "Band Face Pull (Anchored)",
-      "Y-Bell Upright Row",
-      "Band Bicep Curl",
-      "Single Arm Band Row"
-    ],
-    post: [
-      "Kettlebell Swing (35lb)",
-      "Goblet Squat with Kettlebell",
-      "Y-Bell Romanian Deadlift",
-      "Kettlebell Deadlift",
-      "Band Hip Hinge",
-      "Med Ball Squat to Press",
-      "Bench Step-Up",
-      "Steel Mace Barbarian Squat"
-    ],
-    carry: [
-      "Two Hand Farmer's Carry (Y-Bells)",
-      "Suitcase Carry (Kettlebell)",
-      "Medicine Ball Chest Carry",
-      "Bear Hug Carry (Med Ball)",
-      "Band Farmer's Walk"
-    ],
-    core: [
-      "Steel Mace Figure Eight",
-      "Steel Mace 360 Swing",
-      "Band Anti-Rotation Hold",
-      "Seated Med Ball Twist (On Bench)",
-      "Standing Band Chop (Anchored)",
-      "Pallof Press with Band",
-      "Flutter Kicks (On Bench)",
-      "Elevated Plank (On Bench)",
-      "Side Plank (Floor)",
-      "Steel Mace Barbarian Squat"
-    ]
+    push: ["Band Chest Press (Anchored)","Y-Bell Shoulder Press","Bench Incline Push-Up","Band Overhead Press","Y-Bell Chest Fly (On Bench)","Push-Up (Knees)","Y-Bell Arnold Press"],
+    pull: ["Band Row (Anchored)","Y-Bell Bent Over Row","Band Pull-Apart","Band Face Pull (Anchored)","Y-Bell Upright Row","Band Bicep Curl","Single Arm Band Row"],
+    post: ["Kettlebell Swing (35lb)","Goblet Squat with Kettlebell","Y-Bell Romanian Deadlift","Kettlebell Deadlift","Band Hip Hinge","Med Ball Squat to Press","Bench Step-Up","Steel Mace Barbarian Squat"],
+    carry: ["Two Hand Farmer's Carry (Y-Bells)","Suitcase Carry (Kettlebell)","Medicine Ball Chest Carry","Bear Hug Carry (Med Ball)","Band Farmer's Walk"],
+    core: ["Steel Mace Figure Eight","Steel Mace 360 Swing","Band Anti-Rotation Hold","Seated Med Ball Twist (On Bench)","Standing Band Chop (Anchored)","Pallof Press with Band","Flutter Kicks (On Bench)","Elevated Plank (On Bench)","Side Plank (Floor)","Steel Mace Barbarian Squat"]
   };
 
   let currentMode = localStorage.getItem('w-mode') || 'gym';
   let movements = currentMode === 'gym' ? gym : park;
+  const lastPick = { push:-1, pull:-1, post:-1, carry:-1, core:-1 };
 
   function setMode(mode) {
     currentMode = mode;
@@ -502,19 +378,19 @@
       ? 'Gym Mode — Full Equipment'
       : 'Park Mode — Y-Bells · Kettlebells · Mace · Bands';
 
+    // Switch body theme
+    document.body.classList.toggle('park', mode === 'park');
+
     // Reset cards
-    const keys = ['push','pull','post','carry','core'];
-    keys.forEach(k => {
+    ['push','pull','post','carry','core'].forEach(k => {
       document.getElementById('name-' + k).textContent = 'Tap spin to begin';
       document.getElementById('sum-' + k).textContent = '—';
-      Object.keys(lastPick).forEach(k => lastPick[k] = -1);
+      lastPick[k] = -1;
     });
   }
 
-  // Initialize mode UI
+  // Initialize
   setMode(currentMode);
-
-  const lastPick = { push: -1, pull: -1, post: -1, carry: -1, core: -1 };
 
   function getRandom(key) {
     const arr = movements[key];
@@ -529,135 +405,59 @@
     const el = document.getElementById('name-' + key);
     el.classList.add('cycling');
     const arr = movements[key];
-    let count = 0;
-    const total = 14 + Math.floor(Math.random() * 6);
-    let delay = 55;
-
+    let count = 0, total = 14 + Math.floor(Math.random() * 6), delay = 55;
     function step() {
       el.textContent = arr[Math.floor(Math.random() * arr.length)];
       count++;
-      if (count < total) {
-        delay = Math.min(delay * 1.13, 300);
-        setTimeout(step, delay);
-      } else {
-        const result = getRandom(key);
-        el.textContent = result;
-        el.classList.remove('cycling');
-        document.getElementById('sum-' + key).textContent = result;
-        if (callback) callback();
-      }
+      if (count < total) { delay = Math.min(delay * 1.13, 300); setTimeout(step, delay); }
+      else { const r = getRandom(key); el.textContent = r; el.classList.remove('cycling'); document.getElementById('sum-' + key).textContent = r; if (callback) callback(); }
     }
     step();
   }
 
   function spinOne(key) {
-    document.querySelectorAll('.spin-btn').forEach(b => {
-      if (b.getAttribute('onclick') === "spinOne('" + key + "')") b.classList.add('spinning');
-    });
-    animateSpin(key, () => {
-      document.querySelectorAll('.spin-btn').forEach(b => {
-        if (b.getAttribute('onclick') === "spinOne('" + key + "')") b.classList.remove('spinning');
-      });
-    });
+    document.querySelectorAll('.spin-btn').forEach(b => { if (b.getAttribute('onclick') === "spinOne('" + key + "')") b.classList.add('spinning'); });
+    animateSpin(key, () => { document.querySelectorAll('.spin-btn').forEach(b => { if (b.getAttribute('onclick') === "spinOne('" + key + "')") b.classList.remove('spinning'); }); });
   }
 
   function spinAll(btn) {
-    btn.classList.add('spinning');
-    btn.textContent = 'Spinning...';
-    const keys = ['push','pull','post','carry','core'];
+    btn.classList.add('spinning'); btn.textContent = 'Spinning...';
     let done = 0;
-    keys.forEach((key, i) => {
-      setTimeout(() => {
-        animateSpin(key, () => {
-          done++;
-          if (done === keys.length) {
-            btn.classList.remove('spinning');
-            btn.textContent = '⚡ Spin All 5 Positions';
-          }
-        });
-      }, i * 80);
+    ['push','pull','post','carry','core'].forEach((key, i) => {
+      setTimeout(() => { animateSpin(key, () => { done++; if (done === 5) { btn.classList.remove('spinning'); btn.textContent = '⚡ Spin All 5 Positions'; } }); }, i * 80);
     });
   }
 
-  // Circuit counter
   let circuitsDone = 0;
-
   function toggleCircuit(n) {
     circuitsDone = circuitsDone === n ? n - 1 : n;
-    for (let i = 1; i <= 5; i++) {
-      const dot = document.getElementById('c' + i);
-      i <= circuitsDone ? dot.classList.add('done') : dot.classList.remove('done');
-    }
+    for (let i = 1; i <= 5; i++) { const d = document.getElementById('c' + i); i <= circuitsDone ? d.classList.add('done') : d.classList.remove('done'); }
   }
 
-  // Local storage
   const STORAGE_KEY = 'w-session-log';
   function getLog() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch { return []; } }
   function saveLog(log) { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(log)); } catch {} }
 
   function logSession() {
-    const moves = {
-      push: document.getElementById('sum-push').textContent,
-      pull: document.getElementById('sum-pull').textContent,
-      post: document.getElementById('sum-post').textContent,
-      carry: document.getElementById('sum-carry').textContent,
-      core: document.getElementById('sum-core').textContent
-    };
+    const moves = { push: document.getElementById('sum-push').textContent, pull: document.getElementById('sum-pull').textContent, post: document.getElementById('sum-post').textContent, carry: document.getElementById('sum-carry').textContent, core: document.getElementById('sum-core').textContent };
     if (Object.values(moves).every(v => v === '—')) { alert('Spin the wheel first.'); return; }
     if (circuitsDone === 0) { alert('Tap how many circuits you completed.'); return; }
-
     const now = new Date();
-    const entry = {
-      date: now.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }),
-      time: now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }),
-      circuits: circuitsDone,
-      location: currentMode === 'gym' ? '🏋️ Gym' : '🌳 Park',
-      moves,
-      note: document.getElementById('sessionNote').value.trim()
-    };
-
-    const log = getLog();
-    log.unshift(entry);
-    saveLog(log);
-    renderHistory();
-
+    const entry = { date: now.toLocaleDateString('en-US', { weekday:'short', month:'short', day:'numeric' }), time: now.toLocaleTimeString('en-US', { hour:'numeric', minute:'2-digit' }), circuits: circuitsDone, location: currentMode === 'gym' ? '🏋️ Gym' : '🌳 Park', moves, note: document.getElementById('sessionNote').value.trim() };
+    const log = getLog(); log.unshift(entry); saveLog(log); renderHistory();
     circuitsDone = 0;
     for (let i = 1; i <= 5; i++) document.getElementById('c' + i).classList.remove('done');
     document.getElementById('sessionNote').value = '';
-
-    const btn = document.getElementById('logBtn');
-    btn.textContent = '✓ Saved';
+    const btn = document.getElementById('logBtn'); btn.textContent = '✓ Saved';
     setTimeout(() => { btn.textContent = 'Save This Workout'; }, 2000);
   }
 
-  function clearHistory() {
-    if (confirm('Clear all session history?')) { saveLog([]); renderHistory(); }
-  }
+  function clearHistory() { if (confirm('Clear all session history?')) { saveLog([]); renderHistory(); } }
 
   function renderHistory() {
-    const log = getLog();
-    const list = document.getElementById('historyList');
-    if (log.length === 0) {
-      list.innerHTML = '<div class="history-empty">No sessions logged yet.<br>Your first one is next.</div>';
-      return;
-    }
-    list.innerHTML = log.map(e => `
-      <div class="history-entry">
-        <div class="history-meta">
-          <span class="history-date">${e.date} · ${e.time}</span>
-          <span class="history-circuits">${e.circuits} circuit${e.circuits > 1 ? 's' : ''}</span>
-        </div>
-        <div class="history-loc">${e.location || ''}</div>
-        <div class="history-moves">
-          <span class="history-pill" style="color:#E07A5F">${e.moves.push}</span>
-          <span class="history-pill" style="color:#2A9D8F">${e.moves.pull}</span>
-          <span class="history-pill" style="color:#D4A843">${e.moves.post}</span>
-          <span class="history-pill" style="color:#9B7FD4">${e.moves.carry}</span>
-          <span class="history-pill" style="color:#7BAF8E">${e.moves.core}</span>
-        </div>
-        ${e.note ? `<div class="history-note">"${e.note}"</div>` : ''}
-      </div>
-    `).join('');
+    const log = getLog(), list = document.getElementById('historyList');
+    if (!log.length) { list.innerHTML = '<div class="history-empty">No sessions logged yet.<br>Your first one is next.</div>'; return; }
+    list.innerHTML = log.map(e => `<div class="history-entry"><div class="history-meta"><span class="history-date">${e.date} · ${e.time}</span><span class="history-circuits">${e.circuits} circuit${e.circuits>1?'s':''}</span></div><div class="history-loc">${e.location||''}</div><div class="history-moves"><span class="history-pill" style="color:#E07A5F">${e.moves.push}</span><span class="history-pill" style="color:#2A9D8F">${e.moves.pull}</span><span class="history-pill" style="color:#C8943A">${e.moves.post}</span><span class="history-pill" style="color:#9B7FD4">${e.moves.carry}</span><span class="history-pill" style="color:#7BAF8E">${e.moves.core}</span></div>${e.note?`<div class="history-note">"${e.note}"</div>`:''}</div>`).join('');
   }
 
   renderHistory();
