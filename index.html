@@ -13,6 +13,8 @@
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; user-select: none; }
 
+  button { user-select: none; -webkit-user-select: none; touch-action: manipulation; cursor: pointer; }
+
   /* GYM — high contrast dark */
   :root {
     --bg: #0F0F13;
@@ -299,29 +301,29 @@
       <div class="setting-row">
         <div class="setting-label">Work Time</div>
         <div class="setting-options" id="workOpts">
-          <button class="setting-opt" data-key="work" data-val="30">30s</button>
-          <button class="setting-opt" data-key="work" data-val="45">45s</button>
-          <button class="setting-opt selected" data-key="work" data-val="60">60s</button>
+          <button class="setting-opt" onclick="setSetting('work',30,this)">30s</button>
+          <button class="setting-opt" onclick="setSetting('work',45,this)">45s</button>
+          <button class="setting-opt selected" onclick="setSetting('work',60,this)">60s</button>
         </div>
       </div>
       <div class="setting-row">
         <div class="setting-label">Rest Between Exercises</div>
         <div class="setting-options" id="restOpts">
-          <button class="setting-opt" data-key="rest" data-val="30">30s</button>
-          <button class="setting-opt" data-key="rest" data-val="45">45s</button>
-          <button class="setting-opt selected" data-key="rest" data-val="60">60s</button>
-          <button class="setting-opt" data-key="rest" data-val="90">90s</button>
-          <button class="setting-opt" data-key="rest" data-val="120">2 min</button>
+          <button class="setting-opt" onclick="setSetting('rest',30,this)">30s</button>
+          <button class="setting-opt" onclick="setSetting('rest',45,this)">45s</button>
+          <button class="setting-opt selected" onclick="setSetting('rest',60,this)">60s</button>
+          <button class="setting-opt" onclick="setSetting('rest',90,this)">90s</button>
+          <button class="setting-opt" onclick="setSetting('rest',120,this)">2 min</button>
         </div>
       </div>
       <div class="setting-row">
         <div class="setting-label">Circuits</div>
         <div class="setting-options" id="circuitOpts">
-          <button class="setting-opt" data-key="circuits" data-val="1">1</button>
-          <button class="setting-opt" data-key="circuits" data-val="2">2</button>
-          <button class="setting-opt selected" data-key="circuits" data-val="3">3</button>
-          <button class="setting-opt" data-key="circuits" data-val="4">4</button>
-          <button class="setting-opt" data-key="circuits" data-val="5">5</button>
+          <button class="setting-opt" onclick="setSetting('circuits',1,this)">1</button>
+          <button class="setting-opt" onclick="setSetting('circuits',2,this)">2</button>
+          <button class="setting-opt selected" onclick="setSetting('circuits',3,this)">3</button>
+          <button class="setting-opt" onclick="setSetting('circuits',4,this)">4</button>
+          <button class="setting-opt" onclick="setSetting('circuits',5,this)">5</button>
         </div>
       </div>
     </div>
@@ -538,33 +540,6 @@
 
   // ── TIMER SETTINGS ──
   const settings = { work: 60, rest: 60, circuits: 3 };
-
-  // Wire up setting buttons with touch events for iOS reliability
-  document.querySelectorAll('.setting-opt').forEach(btn => {
-    btn.addEventListener('touchend', function(e) {
-      e.preventDefault();
-      const key = this.dataset.key;
-      const val = parseInt(this.dataset.val);
-      settings[key] = val;
-      this.closest('.setting-options').querySelectorAll('.setting-opt').forEach(b => b.classList.remove('selected'));
-      this.classList.add('selected');
-      if (!timerRunning) {
-        document.getElementById('timerCount').textContent = settings.work;
-        updateRing(settings.work, settings.work);
-      }
-    });
-    btn.addEventListener('click', function() {
-      const key = this.dataset.key;
-      const val = parseInt(this.dataset.val);
-      settings[key] = val;
-      this.closest('.setting-options').querySelectorAll('.setting-opt').forEach(b => b.classList.remove('selected'));
-      this.classList.add('selected');
-      if (!timerRunning) {
-        document.getElementById('timerCount').textContent = settings.work;
-        updateRing(settings.work, settings.work);
-      }
-    });
-  });
 
   function setSetting(key, val, btn) {
     settings[key] = val;
