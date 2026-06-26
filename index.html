@@ -6,33 +6,57 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="W">
-<meta name="theme-color" content="#111111">
+<meta name="theme-color" content="#0F0F13">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
 <title>Workout Wonder Wheel</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; user-select: none; }
 
+  /* GYM — high contrast dark */
   :root {
-    --bg: #161618; --surface: #242428; --border: rgba(255,255,255,0.12);
-    --text: #F8F8F8; --text2: #C0C8D0; --text3: #888896;
-    --gold: #F0B429; --teal: #3BBFB0; --divider: rgba(255,255,255,0.1);
-    --input-bg: #1A1A1E; --input-border: rgba(255,255,255,0.15); --pill-bg: #2E2E36;
-    --empty-color: #555566; --toggle-bg: #242428;
-    --push-bg: #2E1810; --pull-bg: #0E2420; --post-bg: #2A2208; --carry-bg: #1E1230; --core-bg: #0E2018;
-    --push-border: rgba(224,122,95,0.35); --pull-border: rgba(42,157,143,0.35);
-    --post-border: rgba(240,180,41,0.35); --carry-border: rgba(155,127,212,0.35); --core-border: rgba(123,175,142,0.35);
+    --bg: #0F0F13;
+    --surface: #1C1C24;
+    --surface2: #242430;
+    --border: rgba(255,255,255,0.14);
+    --text: #FFFFFF;
+    --text2: #C8D0E0;
+    --text3: #8890A4;
+    --gold: #FFB800;
+    --teal: #3DCFBE;
+    --divider: rgba(255,255,255,0.1);
+    --input-bg: #13131A;
+    --input-border: rgba(255,255,255,0.18);
+    --pill-bg: #2A2A38;
+    --empty-color: #444458;
+    --toggle-bg: #1C1C24;
+    --push-bg: #2E1610; --pull-bg: #0C2220; --post-bg: #28200A; --carry-bg: #1C1030; --core-bg: #0C1E14;
+    --push-border: rgba(230,100,80,0.4); --pull-border: rgba(50,180,160,0.4);
+    --post-border: rgba(255,184,0,0.4); --carry-border: rgba(160,130,220,0.4); --core-border: rgba(100,190,140,0.4);
+    --push-col: #FF7A5C; --pull-col: #3DCFBE; --post-col: #FFB800; --carry-col: #B090E8; --core-col: #6DC98C;
   }
 
+  /* PARK — high contrast light, sunlight readable */
   body.park {
-    --bg: #EDE8DF; --surface: #FFFFFF; --border: rgba(0,0,0,0.12);
-    --text: #111111; --text2: #444444; --text3: #777777;
-    --gold: #B8820A; --teal: #1E8A7E; --divider: rgba(0,0,0,0.1);
-    --input-bg: #F5F0E8; --input-border: rgba(0,0,0,0.15); --pill-bg: #EDE8DF;
-    --empty-color: #AAAAAA; --toggle-bg: #FFFFFF;
-    --push-bg: #FCEAE6; --pull-bg: #E0F2F0; --post-bg: #FDF3DC; --carry-bg: #EDE8F8; --core-bg: #E4F2E8;
-    --push-border: rgba(200,80,60,0.25); --pull-border: rgba(30,138,126,0.25);
-    --post-border: rgba(184,130,10,0.25); --carry-border: rgba(130,100,200,0.25); --core-border: rgba(80,160,110,0.25);
+    --bg: #E4E0D8;
+    --surface: #FFFFFF;
+    --surface2: #F5F2EC;
+    --border: rgba(0,0,0,0.14);
+    --text: #080808;
+    --text2: #333333;
+    --text3: #666666;
+    --gold: #946200;
+    --teal: #1A7A70;
+    --divider: rgba(0,0,0,0.1);
+    --input-bg: #EDEAD4;
+    --input-border: rgba(0,0,0,0.18);
+    --pill-bg: #E4E0D8;
+    --empty-color: #999999;
+    --toggle-bg: #FFFFFF;
+    --push-bg: #FCEAE6; --pull-bg: #DDF2EE; --post-bg: #FDF4DC; --carry-bg: #EDE8F8; --core-bg: #E2F2E8;
+    --push-border: rgba(180,60,40,0.3); --pull-border: rgba(26,122,112,0.3);
+    --post-border: rgba(148,98,0,0.3); --carry-border: rgba(120,90,190,0.3); --core-border: rgba(60,140,90,0.3);
+    --push-col: #C03820; --pull-col: #1A7A70; --post-col: #946200; --carry-col: #7858C0; --core-col: #2A8C50;
   }
 
   body {
@@ -45,99 +69,91 @@
   .page { max-width: 420px; width: 100%; padding: 48px 16px 80px; }
   .divider { height: 1px; background: var(--divider); margin: 24px 0; }
 
+  /* Header */
   .header { text-align: center; margin-bottom: 24px; }
-  .w-mark { font-size: 52px; font-weight: 900; color: var(--gold); letter-spacing: -2px; line-height: 1; margin-bottom: 6px; }
+  .w-mark { font-size: 56px; font-weight: 900; color: var(--gold); letter-spacing: -2px; line-height: 1; margin-bottom: 6px; }
   .header-name { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text3); font-weight: 700; margin-bottom: 4px; }
-  .header-sub { font-size: 12px; color: var(--text3); line-height: 1.5; }
+  .header-sub { font-size: 13px; color: var(--text2); line-height: 1.5; }
 
-  .location-toggle {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 20px;
-    background: var(--toggle-bg); border-radius: 14px; padding: 6px; border: 1px solid var(--border);
-  }
-  .loc-btn { border: none; border-radius: 10px; padding: 13px 8px; font-size: 13px; font-weight: 800; letter-spacing: 0.06em; cursor: pointer; transition: all 0.2s; background: transparent; color: var(--text3); }
+  /* Toggle */
+  .location-toggle { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 20px; background: var(--toggle-bg); border-radius: 14px; padding: 6px; border: 1px solid var(--border); }
+  .loc-btn { border: none; border-radius: 10px; padding: 14px 8px; font-size: 14px; font-weight: 800; letter-spacing: 0.06em; cursor: pointer; transition: all 0.2s; background: transparent; color: var(--text3); }
   .loc-btn.active { background: var(--gold); color: #111; }
-
   .loc-badge { display: flex; justify-content: center; margin-bottom: 16px; }
-  .loc-pill { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; background: rgba(212,168,67,0.12); color: var(--gold); }
+  .loc-pill { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; background: rgba(255,184,0,0.15); color: var(--gold); }
 
+  /* Zones */
   .zones { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-bottom: 20px; }
   .zone { background: var(--surface); border-radius: 10px; padding: 10px 8px; text-align: center; border: 1px solid var(--border); }
-  .zone-bpm { font-size: 13px; font-weight: 800; line-height: 1; margin-bottom: 3px; }
-  .zone-label { font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text3); font-weight: 600; }
+  .zone-bpm { font-size: 14px; font-weight: 800; line-height: 1; margin-bottom: 3px; }
+  .zone-label { font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text3); font-weight: 700; }
 
-  .spin-all-btn {
-    width: 100%; background: var(--gold); color: #111; border: none; border-radius: 14px;
-    padding: 18px; font-size: 15px; font-weight: 900; letter-spacing: 0.08em; text-transform: uppercase;
-    cursor: pointer; transition: transform 0.1s, opacity 0.1s; margin-bottom: 16px;
-  }
+  /* Spin All */
+  .spin-all-btn { width: 100%; background: var(--gold); color: #111; border: none; border-radius: 14px; padding: 18px; font-size: 15px; font-weight: 900; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: transform 0.1s, opacity 0.1s; margin-bottom: 16px; }
   .spin-all-btn:active { transform: scale(0.97); opacity: 0.9; }
   .spin-all-btn.spinning { background: var(--surface); color: var(--text3); }
 
-  /* ── TIMER ── */
-  .timer-block {
-    background: var(--surface); border: 1px solid var(--border); border-radius: 20px;
-    padding: 24px 20px; margin-bottom: 16px; text-align: center;
-    transition: background 0.3s, border-color 0.3s;
-  }
+  /* Warm Up */
+  .warmup-block { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; margin-bottom: 16px; overflow: hidden; }
+  .warmup-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 18px; cursor: pointer; }
+  .warmup-title-row { display: flex; align-items: center; gap: 10px; }
+  .warmup-icon { font-size: 18px; }
+  .warmup-title { font-size: 13px; font-weight: 800; color: var(--text); }
+  .warmup-chevron { font-size: 11px; color: var(--text3); transition: transform 0.25s; }
+  .warmup-block.open .warmup-chevron { transform: rotate(180deg); }
+  .warmup-body { display: none; padding: 0 18px 18px; }
+  .warmup-block.open .warmup-body { display: block; }
+  .warmup-intro { font-size: 12px; color: var(--text2); line-height: 1.6; margin-bottom: 14px; }
+  .warmup-item { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 10px; }
+  .warmup-item:last-child { margin-bottom: 0; }
+  .warmup-num { width: 24px; height: 24px; border-radius: 50%; background: rgba(255,184,0,0.15); color: var(--gold); font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .warmup-text { font-size: 13px; color: var(--text); font-weight: 700; line-height: 1.3; }
+  .warmup-sub { font-size: 11px; color: var(--text3); margin-top: 2px; }
 
-  .timer-label {
-    font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
-    color: var(--text3); font-weight: 700; margin-bottom: 16px;
-  }
+  /* ── INTERVAL TIMER ── */
+  .timer-block { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 22px 18px; margin-bottom: 16px; }
+  .timer-section-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text3); font-weight: 700; margin-bottom: 16px; }
 
-  .timer-ring-wrap { position: relative; width: 140px; height: 140px; margin: 0 auto 16px; }
+  /* Settings */
+  .timer-settings { margin-bottom: 20px; }
+  .setting-row { margin-bottom: 14px; }
+  .setting-label { font-size: 11px; font-weight: 700; color: var(--text2); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+  .setting-options { display: flex; gap: 6px; flex-wrap: wrap; }
+  .setting-opt { border: 1px solid var(--border); background: var(--surface2); color: var(--text3); border-radius: 8px; padding: 8px 14px; font-size: 12px; font-weight: 800; cursor: pointer; transition: all 0.15s; }
+  .setting-opt.selected { background: var(--gold); color: #111; border-color: var(--gold); }
 
+  /* Timer display */
+  .timer-display { text-align: center; }
+  .timer-circuit-info { font-size: 12px; font-weight: 700; color: var(--text3); margin-bottom: 8px; min-height: 18px; letter-spacing: 0.06em; text-transform: uppercase; }
+  .timer-ring-wrap { position: relative; width: 150px; height: 150px; margin: 0 auto 12px; }
   .timer-ring { transform: rotate(-90deg); }
+  .timer-ring-bg { fill: none; stroke: var(--border); stroke-width: 10; }
+  .timer-ring-progress { fill: none; stroke: var(--gold); stroke-width: 10; stroke-linecap: round; stroke-dasharray: 395.8; stroke-dashoffset: 0; transition: stroke 0.3s; }
+  .timer-ring-progress.rest-phase { stroke: var(--teal); }
+  .timer-ring-progress.warning { stroke: #FF6B4A; }
+  .timer-count { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 52px; font-weight: 900; color: var(--text); letter-spacing: -2px; line-height: 1; }
+  .timer-exercise-name { font-size: 18px; font-weight: 900; color: var(--text); line-height: 1.2; margin-bottom: 4px; min-height: 46px; display: flex; align-items: center; justify-content: center; text-align: center; }
+  .timer-phase-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text3); margin-bottom: 6px; min-height: 16px; }
+  .timer-phase-label.working { color: var(--gold); }
+  .timer-phase-label.resting { color: var(--teal); }
+  .timer-phase-label.done { color: #6DC98C; }
+  .timer-next { font-size: 11px; color: var(--text3); margin-bottom: 16px; min-height: 16px; }
+  .timer-next span { color: var(--text2); font-weight: 700; }
 
-  .timer-ring-bg { fill: none; stroke: var(--border); stroke-width: 8; }
-
-  .timer-ring-progress {
-    fill: none; stroke: var(--gold); stroke-width: 8;
-    stroke-linecap: round;
-    stroke-dasharray: 339.3;
-    stroke-dashoffset: 0;
-    transition: stroke 0.3s;
-  }
-
-  .timer-ring-progress.warning { stroke: #E07A5F; }
-  .timer-ring-progress.done { stroke: #2A9D8F; }
-
-  .timer-count {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    font-size: 48px; font-weight: 900; color: var(--text); letter-spacing: -2px; line-height: 1;
-  }
-
-  .timer-status {
-    font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--text3); margin-bottom: 16px; min-height: 16px;
-  }
-
-  .timer-status.rest { color: #2A9D8F; }
-  .timer-status.warning { color: #E07A5F; }
-  .timer-status.done { color: var(--gold); }
+  /* Position dots */
+  .timer-dots { display: flex; justify-content: center; gap: 8px; margin-bottom: 18px; }
+  .timer-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border); transition: all 0.2s; }
+  .timer-dot.active { background: var(--gold); transform: scale(1.3); }
+  .timer-dot.done-dot { background: var(--teal); }
 
   .timer-controls { display: flex; gap: 8px; }
-
-  .timer-start {
-    flex: 1; background: var(--gold); color: #111; border: none; border-radius: 12px;
-    padding: 14px; font-size: 14px; font-weight: 900; letter-spacing: 0.08em;
-    text-transform: uppercase; cursor: pointer; transition: transform 0.1s, opacity 0.1s;
-  }
+  .timer-start { flex: 1; background: var(--gold); color: #111; border: none; border-radius: 12px; padding: 15px; font-size: 14px; font-weight: 900; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: transform 0.1s, opacity 0.1s; }
   .timer-start:active { transform: scale(0.97); }
-
-  .timer-reset {
-    background: var(--surface); color: var(--text3); border: 1px solid var(--border);
-    border-radius: 12px; padding: 14px 18px; font-size: 13px; font-weight: 700;
-    cursor: pointer; transition: transform 0.1s;
-  }
+  .timer-start:disabled { opacity: 0.4; pointer-events: none; }
+  .timer-reset { background: var(--surface2); color: var(--text2); border: 1px solid var(--border); border-radius: 12px; padding: 15px 18px; font-size: 13px; font-weight: 700; cursor: pointer; }
   .timer-reset:active { transform: scale(0.97); }
 
-  .rest-toggle {
-    margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 8px;
-    font-size: 11px; color: var(--text3); font-weight: 600; cursor: pointer;
-  }
-
-  .rest-toggle input { cursor: pointer; accent-color: var(--teal); }
+  .timer-hint { font-size: 11px; color: var(--text3); text-align: center; margin-top: 12px; line-height: 1.5; }
 
   /* Cards */
   .cards { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
@@ -146,7 +162,7 @@
   .card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
   .position-badge { font-size: 9px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; }
   .hr-badge { font-size: 10px; font-weight: 700; color: var(--text3); }
-  .exercise-name { font-size: 21px; font-weight: 900; line-height: 1.15; letter-spacing: -0.3px; min-height: 50px; display: flex; align-items: center; margin-bottom: 12px; transition: opacity 0.1s; }
+  .exercise-name { font-size: 20px; font-weight: 900; line-height: 1.15; letter-spacing: -0.3px; min-height: 48px; display: flex; align-items: center; margin-bottom: 12px; transition: opacity 0.1s; }
   .exercise-name.cycling { opacity: 0.3; }
   .card-bottom { display: flex; align-items: center; justify-content: space-between; }
   .tempo-note { font-size: 11px; color: var(--text3); line-height: 1.4; flex: 1; padding-right: 10px; }
@@ -155,35 +171,36 @@
   .spin-btn.spinning { opacity: 0.3; pointer-events: none; }
 
   .push-card { background: var(--push-bg); border-color: var(--push-border); }
-  .push-badge { background: rgba(224,122,95,0.12); color: #E07A5F; }
-  .push-name { color: #E07A5F; }
-  .push-btn { background: rgba(224,122,95,0.12); color: #E07A5F; }
-  .push-zone { color: #E07A5F; }
+  .push-badge { background: rgba(255,122,92,0.15); color: var(--push-col); }
+  .push-name { color: var(--push-col); }
+  .push-btn { background: rgba(255,122,92,0.15); color: var(--push-col); }
+  .push-zone { color: var(--push-col); }
 
   .pull-card { background: var(--pull-bg); border-color: var(--pull-border); }
-  .pull-badge { background: rgba(42,157,143,0.12); color: #2A9D8F; }
-  .pull-name { color: #2A9D8F; }
-  .pull-btn { background: rgba(42,157,143,0.12); color: #2A9D8F; }
-  .pull-zone { color: #2A9D8F; }
+  .pull-badge { background: rgba(61,207,190,0.15); color: var(--pull-col); }
+  .pull-name { color: var(--pull-col); }
+  .pull-btn { background: rgba(61,207,190,0.15); color: var(--pull-col); }
+  .pull-zone { color: var(--pull-col); }
 
   .post-card { background: var(--post-bg); border-color: var(--post-border); }
-  .post-badge { background: rgba(212,168,67,0.12); color: #C8943A; }
-  .post-name { color: #C8943A; }
-  .post-btn { background: rgba(212,168,67,0.12); color: #C8943A; }
-  .post-zone { color: #C8943A; }
+  .post-badge { background: rgba(255,184,0,0.15); color: var(--post-col); }
+  .post-name { color: var(--post-col); }
+  .post-btn { background: rgba(255,184,0,0.15); color: var(--post-col); }
+  .post-zone { color: var(--post-col); }
 
   .carry-card { background: var(--carry-bg); border-color: var(--carry-border); }
-  .carry-badge { background: rgba(155,127,212,0.12); color: #9B7FD4; }
-  .carry-name { color: #9B7FD4; }
-  .carry-btn { background: rgba(155,127,212,0.12); color: #9B7FD4; }
-  .carry-zone { color: #9B7FD4; }
+  .carry-badge { background: rgba(176,144,232,0.15); color: var(--carry-col); }
+  .carry-name { color: var(--carry-col); }
+  .carry-btn { background: rgba(176,144,232,0.15); color: var(--carry-col); }
+  .carry-zone { color: var(--carry-col); }
 
   .core-card { background: var(--core-bg); border-color: var(--core-border); }
-  .core-badge { background: rgba(123,175,142,0.12); color: #7BAF8E; }
-  .core-name { color: #7BAF8E; }
-  .core-btn { background: rgba(123,175,142,0.12); color: #7BAF8E; }
-  .core-zone { color: #7BAF8E; }
+  .core-badge { background: rgba(109,201,140,0.15); color: var(--core-col); }
+  .core-name { color: var(--core-col); }
+  .core-btn { background: rgba(109,201,140,0.15); color: var(--core-col); }
+  .core-zone { color: var(--core-col); }
 
+  /* Summary */
   .summary { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px 16px; margin-bottom: 16px; }
   .summary-title { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text3); font-weight: 700; margin-bottom: 12px; }
   .summary-row { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 8px; }
@@ -191,17 +208,19 @@
   .summary-pos { font-size: 9px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; min-width: 58px; padding-top: 2px; }
   .summary-ex { font-size: 13px; font-weight: 700; color: var(--text); line-height: 1.3; }
 
+  /* Rules */
   .rules { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px; margin-bottom: 12px; }
   .rules-title { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text3); font-weight: 700; margin-bottom: 10px; }
-  .rule-row { display: flex; gap: 10px; margin-bottom: 6px; font-size: 11px; color: var(--text3); line-height: 1.5; align-items: flex-start; }
+  .rule-row { display: flex; gap: 10px; margin-bottom: 6px; font-size: 12px; color: var(--text2); line-height: 1.5; align-items: flex-start; }
   .rule-row:last-child { margin-bottom: 0; }
-  .rule-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--text3); flex-shrink: 0; margin-top: 6px; }
+  .rule-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 6px; }
 
+  /* Log */
   .log-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px 16px; margin-bottom: 12px; }
   .log-title { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text3); font-weight: 700; margin-bottom: 14px; }
   .circuit-counter { display: flex; gap: 8px; align-items: center; margin-bottom: 16px; }
-  .circuit-counter-label { font-size: 11px; color: var(--text3); font-weight: 600; margin-right: 2px; }
-  .circuit-dot { width: 38px; height: 38px; border-radius: 50%; border: 2px solid var(--border); background: var(--input-bg); color: var(--text3); font-size: 13px; font-weight: 800; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.15s; flex-shrink: 0; }
+  .circuit-counter-label { font-size: 12px; color: var(--text2); font-weight: 700; margin-right: 2px; }
+  .circuit-dot { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--border); background: var(--input-bg); color: var(--text3); font-size: 14px; font-weight: 800; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.15s; flex-shrink: 0; }
   .circuit-dot.done { background: var(--gold); border-color: var(--gold); color: #111; }
   .note-label { font-size: 10px; color: var(--text3); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
   .note-input { width: 100%; background: var(--input-bg); border: 1px solid var(--input-border); border-radius: 10px; padding: 12px 14px; font-size: 14px; color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; resize: none; outline: none; line-height: 1.6; min-height: 68px; -webkit-user-select: text; user-select: text; }
@@ -209,10 +228,11 @@
   .log-btn { width: 100%; background: var(--gold); color: #111; border: none; border-radius: 12px; padding: 16px; font-size: 14px; font-weight: 900; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; margin-top: 14px; transition: transform 0.1s, opacity 0.1s; }
   .log-btn:active { transform: scale(0.97); opacity: 0.9; }
 
+  /* History */
   .history-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px 16px; margin-bottom: 12px; }
   .history-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
   .history-title { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text3); font-weight: 700; }
-  .clear-btn { font-size: 10px; color: var(--text3); background: none; border: none; cursor: pointer; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 0; }
+  .clear-btn { font-size: 10px; color: var(--text3); background: none; border: none; cursor: pointer; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 0; }
   .history-empty { font-size: 13px; color: var(--empty-color); text-align: center; padding: 16px 0; font-weight: 600; line-height: 1.6; }
   .history-entry { border-bottom: 1px solid var(--border); padding: 14px 0; }
   .history-entry:first-child { padding-top: 0; }
@@ -245,32 +265,96 @@
   </div>
 
   <div class="zones">
-    <div class="zone"><div class="zone-bpm" style="color:#7BAF8E">108–125</div><div class="zone-label">Fat Burn</div></div>
-    <div class="zone"><div class="zone-bpm" style="color:#D4A843">125–141</div><div class="zone-label">Cardio</div></div>
-    <div class="zone"><div class="zone-bpm" style="color:#E07A5F">141–149</div><div class="zone-label">Peak</div></div>
+    <div class="zone"><div class="zone-bpm" style="color:#6DC98C">108–125</div><div class="zone-label">Fat Burn</div></div>
+    <div class="zone"><div class="zone-bpm" style="color:#FFB800">125–141</div><div class="zone-label">Cardio</div></div>
+    <div class="zone"><div class="zone-bpm" style="color:#FF7A5C">141–149</div><div class="zone-label">Peak</div></div>
   </div>
 
   <button class="spin-all-btn" onclick="spinAll(this)" id="spinAllBtn">⚡ Spin All 5 Positions</button>
 
-  <!-- TIMER -->
+  <!-- WARM UP -->
+  <div class="warmup-block" id="warmupBlock">
+    <div class="warmup-header" onclick="toggleWarmup()">
+      <div class="warmup-title-row">
+        <span class="warmup-icon">🔥</span>
+        <span class="warmup-title">5 Min Standing Warm-Up</span>
+      </div>
+      <span class="warmup-chevron">▼</span>
+    </div>
+    <div class="warmup-body">
+      <p class="warmup-intro">All standing. No floor. No equipment. Do this before every session.</p>
+      <div class="warmup-item"><div class="warmup-num">1</div><div><div class="warmup-text">Arm Circles</div><div class="warmup-sub">1 min · big slow circles forward then backward</div></div></div>
+      <div class="warmup-item"><div class="warmup-num">2</div><div><div class="warmup-text">Hip Circles</div><div class="warmup-sub">1 min · hands on hips, big slow circles both ways</div></div></div>
+      <div class="warmup-item"><div class="warmup-num">3</div><div><div class="warmup-text">Standing Torso Twist</div><div class="warmup-sub">1 min · arms out, rotate left and right slowly</div></div></div>
+      <div class="warmup-item"><div class="warmup-num">4</div><div><div class="warmup-text">High Knee March</div><div class="warmup-sub">1 min · slow and deliberate, drives blood into legs</div></div></div>
+      <div class="warmup-item"><div class="warmup-num">5</div><div><div class="warmup-text">Lateral Side Bend</div><div class="warmup-sub">1 min · reach overhead, hold 5 sec each side alternating</div></div></div>
+    </div>
+  </div>
+
+  <!-- INTERVAL TIMER -->
   <div class="timer-block">
-    <div class="timer-label">Exercise Timer</div>
-    <div class="timer-ring-wrap">
-      <svg class="timer-ring" width="140" height="140" viewBox="0 0 140 140">
-        <circle class="timer-ring-bg" cx="70" cy="70" r="54"/>
-        <circle class="timer-ring-progress" id="timerRing" cx="70" cy="70" r="54"/>
-      </svg>
-      <div class="timer-count" id="timerCount">60</div>
+    <div class="timer-section-label">Session Timer</div>
+
+    <div class="timer-settings" id="timerSettings">
+      <div class="setting-row">
+        <div class="setting-label">Work Time</div>
+        <div class="setting-options" id="workOpts">
+          <button class="setting-opt" onclick="setSetting('work',30,this)">30s</button>
+          <button class="setting-opt" onclick="setSetting('work',45,this)">45s</button>
+          <button class="setting-opt selected" onclick="setSetting('work',60,this)">60s</button>
+        </div>
+      </div>
+      <div class="setting-row">
+        <div class="setting-label">Rest Between Exercises</div>
+        <div class="setting-options" id="restOpts">
+          <button class="setting-opt" onclick="setSetting('rest',30,this)">30s</button>
+          <button class="setting-opt" onclick="setSetting('rest',45,this)">45s</button>
+          <button class="setting-opt selected" onclick="setSetting('rest',60,this)">60s</button>
+          <button class="setting-opt" onclick="setSetting('rest',90,this)">90s</button>
+          <button class="setting-opt" onclick="setSetting('rest',120,this)">2 min</button>
+        </div>
+      </div>
+      <div class="setting-row">
+        <div class="setting-label">Circuits</div>
+        <div class="setting-options" id="circuitOpts">
+          <button class="setting-opt" onclick="setSetting('circuits',1,this)">1</button>
+          <button class="setting-opt" onclick="setSetting('circuits',2,this)">2</button>
+          <button class="setting-opt selected" onclick="setSetting('circuits',3,this)">3</button>
+          <button class="setting-opt" onclick="setSetting('circuits',4,this)">4</button>
+          <button class="setting-opt" onclick="setSetting('circuits',5,this)">5</button>
+        </div>
+      </div>
     </div>
-    <div class="timer-status" id="timerStatus">Ready</div>
-    <div class="timer-controls">
-      <button class="timer-start" id="timerStartBtn" onclick="timerToggle()">Start</button>
-      <button class="timer-reset" onclick="timerReset()">Reset</button>
+
+    <div class="timer-display">
+      <div class="timer-circuit-info" id="circuitInfo">Ready to start</div>
+
+      <div class="timer-ring-wrap">
+        <svg class="timer-ring" width="150" height="150" viewBox="0 0 150 150">
+          <circle class="timer-ring-bg" cx="75" cy="75" r="63"/>
+          <circle class="timer-ring-progress" id="timerRing" cx="75" cy="75" r="63"/>
+        </svg>
+        <div class="timer-count" id="timerCount">60</div>
+      </div>
+
+      <div class="timer-dots" id="timerDots">
+        <div class="timer-dot" id="td0"></div>
+        <div class="timer-dot" id="td1"></div>
+        <div class="timer-dot" id="td2"></div>
+        <div class="timer-dot" id="td3"></div>
+        <div class="timer-dot" id="td4"></div>
+      </div>
+
+      <div class="timer-exercise-name" id="timerExName">Spin the wheel first</div>
+      <div class="timer-phase-label" id="timerPhase">—</div>
+      <div class="timer-next" id="timerNext">&nbsp;</div>
+
+      <div class="timer-controls">
+        <button class="timer-start" id="timerStartBtn" onclick="timerToggle()">Start Session</button>
+        <button class="timer-reset" onclick="timerReset()">Reset</button>
+      </div>
+      <div class="timer-hint">Spin the wheel above first, then start the session timer</div>
     </div>
-    <label class="rest-toggle">
-      <input type="checkbox" id="restToggle" onchange="toggleRestMode(this)">
-      Rest timer after (2 min)
-    </label>
   </div>
 
   <!-- Cards -->
@@ -323,11 +407,10 @@
 
   <div class="rules">
     <div class="rules-title">Circuit Rules</div>
-    <div class="rule-row"><div class="rule-dot"></div>1 min per exercise — no breaks within circuit</div>
-    <div class="rule-row"><div class="rule-dot"></div>5 circuits per session — same spin, repeated</div>
+    <div class="rule-row"><div class="rule-dot"></div>No breaks within a circuit — move straight through all 5</div>
     <div class="rule-row"><div class="rule-dot"></div>Walk during rest — never sit or stand still</div>
     <div class="rule-row"><div class="rule-dot"></div>Don't start next circuit until HR is below 115</div>
-    <div class="rule-row"><div class="rule-dot"></div>Wks 1–2: 2 min · Wks 3–4: 90 sec · Wks 5–6: 1 min · Wks 7–8: 45 sec</div>
+    <div class="rule-row"><div class="rule-dot"></div>Wks 1–2: 2 min rest · Wks 3–4: 90 sec · Wks 5–6: 1 min · Wks 7–8: 45 sec</div>
     <div class="rule-row"><div class="rule-dot"></div>20 min cardio after — stay in fat burn zone 108–125</div>
   </div>
 
@@ -360,6 +443,23 @@
 <script>
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
 
+  // ── WAKE LOCK ──
+  let wakeLock = null;
+  async function requestWakeLock() {
+    try {
+      if ('wakeLock' in navigator) {
+        wakeLock = await navigator.wakeLock.request('screen');
+      }
+    } catch(e) {}
+  }
+  async function releaseWakeLock() {
+    try { if (wakeLock) { await wakeLock.release(); wakeLock = null; } } catch(e) {}
+  }
+  // Re-acquire on visibility change
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible' && typeof timerRunning !== 'undefined' && timerRunning) requestWakeLock();
+  });
+
   // ── MOVEMENTS ──
   const gym = {
     push: ["Bench Incline Push-Up","Chest Press Machine","Dumbbell Shoulder Press","Band Chest Press","Dumbbell Chest Fly","Band Overhead Press","Cable Chest Press","Seated Dumbbell Shoulder Press"],
@@ -372,14 +472,16 @@
   const park = {
     push: ["Band Chest Press (Anchored)","Y-Bell Shoulder Press","Wall Push-Up","Band Overhead Press","Y-Bell Chest Fly (Ground)","Push-Up (Knees)","Y-Bell Arnold Press"],
     pull: ["Band Row (Anchored)","Y-Bell Bent Over Row","Band Pull-Apart","Band Face Pull (Anchored)","Y-Bell Upright Row","Band Bicep Curl","Single Arm Band Row"],
-    post: ["Kettlebell Swing (40lb)","Goblet Squat with Kettlebell (40lb)","Y-Bell Romanian Deadlift","Kettlebell Deadlift (40lb)","Band Hip Hinge","Med Ball Squat to Press","Broad Jump (Bodyweight)","Steel Mace Barbarian Squat"],
-    carry: ["Two Hand Farmer's Carry (Y-Bells)","Suitcase Carry (Kettlebell 40lb)","Medicine Ball Chest Carry","Bear Hug Carry (Med Ball)","Band Farmer's Walk"],
+    post: ["Kettlebell Swing (40lb)","Goblet Squat with Kettlebell (40lb)","Y-Bell Romanian Deadlift","Kettlebell Deadlift (40lb)","Band Hip Hinge","Med Ball Squat to Press","Broad Jump (Bodyweight)","Steel Mace Barbarian Squat","Steel Mace 10-to-2"],
+    carry: ["Two Hand Farmer's Carry (Y-Bells)","Suitcase Carry (Kettlebell 40lb)","Medicine Ball Chest Carry","Bear Hug Carry (Med Ball)","Band Farmer's Walk","Steel Mace Farmer's Walk"],
     core: ["Steel Mace Figure Eight","Steel Mace 360 Swing","Band Anti-Rotation Hold","Seated Med Ball Twist (Ground)","Standing Band Chop (Anchored)","Pallof Press with Band","Flutter Kicks (Ground)","Standing Plank Hold with Band","Side Plank (Ground)","Steel Mace Barbarian Squat"]
   };
 
   let currentMode = localStorage.getItem('w-mode') || 'gym';
   let movements = currentMode === 'gym' ? gym : park;
   const lastPick = { push:-1, pull:-1, post:-1, carry:-1, core:-1 };
+  const posKeys = ['push','pull','post','carry','core'];
+  const posLabels = ['Push','Pull','Posterior','Carry','Core'];
 
   function setMode(mode) {
     currentMode = mode;
@@ -389,11 +491,12 @@
     document.getElementById('btn-park').classList.toggle('active', mode === 'park');
     document.getElementById('modePill').textContent = mode === 'gym' ? 'Gym Mode — Full Equipment' : 'Park Mode — Y-Bells · Kettlebells · Mace · Bands';
     document.body.classList.toggle('park', mode === 'park');
-    ['push','pull','post','carry','core'].forEach(k => {
+    posKeys.forEach(k => {
       document.getElementById('name-' + k).textContent = 'Tap spin to begin';
       document.getElementById('sum-' + k).textContent = '—';
       lastPick[k] = -1;
     });
+    if (typeof timerReset === 'function') timerReset();
   }
   setMode(currentMode);
 
@@ -423,18 +526,39 @@
   function spinAll(btn) {
     btn.classList.add('spinning'); btn.textContent = 'Spinning...';
     let done = 0;
-    ['push','pull','post','carry','core'].forEach((key, i) => {
+    posKeys.forEach((key, i) => {
       setTimeout(() => { animateSpin(key, () => { done++; if (done === 5) { btn.classList.remove('spinning'); btn.textContent = '⚡ Spin All 5 Positions'; } }); }, i * 80);
     });
   }
 
-  // ── TIMER ──
-  const CIRCUMFERENCE = 339.3;
+  // Warm up toggle
+  function toggleWarmup() {
+    document.getElementById('warmupBlock').classList.toggle('open');
+  }
+
+  // ── TIMER SETTINGS ──
+  const settings = { work: 60, rest: 60, circuits: 3 };
+
+  function setSetting(key, val, btn) {
+    settings[key] = val;
+    const parent = btn.parentElement;
+    parent.querySelectorAll('.setting-opt').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    // Update display if not running
+    if (!timerRunning) {
+      document.getElementById('timerCount').textContent = settings.work;
+      updateRing(settings.work, settings.work);
+    }
+  }
+
+  // ── INTERVAL TIMER ──
+  const CIRCUMFERENCE = 395.8; // 2 * π * 63
   let timerInterval = null;
-  let timerSeconds = 60;
   let timerRunning = false;
-  let timerPhase = 'work'; // 'work' or 'rest'
-  let restEnabled = false;
+  let timerSeconds = 0;
+  let currentExercise = 0; // 0-4
+  let currentCircuit = 1;
+  let timerPhase = 'idle'; // idle | work | rest | done
   let audioCtx = null;
 
   function getAudioCtx() {
@@ -442,146 +566,213 @@
     return audioCtx;
   }
 
-  function beep(freq, duration, vol) {
+  function beep(freq, dur, vol) {
     try {
-      const ctx = getAudioCtx();
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.connect(gain); gain.connect(ctx.destination);
-      osc.frequency.value = freq; gain.gain.value = vol;
+      const ctx = getAudioCtx(); if (ctx.state === 'suspended') ctx.resume();
+      const osc = ctx.createOscillator(); const g = ctx.createGain();
+      osc.connect(g); g.connect(ctx.destination);
+      osc.frequency.value = freq; g.gain.value = vol;
       osc.start(ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
-      osc.stop(ctx.currentTime + duration);
+      g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + dur);
+      osc.stop(ctx.currentTime + dur);
     } catch(e) {}
   }
 
-  function warningBeep() { beep(800, 0.15, 0.3); }
-
-  function doneBeep() {
-    beep(1000, 0.1, 0.4);
-    setTimeout(() => beep(1200, 0.15, 0.4), 150);
-    setTimeout(() => beep(1000, 0.2, 0.35), 320);
-  }
-
-  function restDoneBeep() {
-    beep(600, 0.1, 0.4);
-    setTimeout(() => beep(800, 0.2, 0.4), 150);
-  }
+  function warningBeep() { beep(900, 0.12, 0.3); }
+  function exerciseDoneBeep() { beep(1100, 0.1, 0.4); setTimeout(() => beep(1100, 0.15, 0.4), 160); }
+  function circuitDoneBeep() { beep(800, 0.1, 0.35); setTimeout(() => beep(1000, 0.1, 0.4), 160); setTimeout(() => beep(1200, 0.2, 0.45), 330); }
+  function allDoneBeep() { [0,180,360,540].forEach((d,i) => setTimeout(() => beep(880 + i*110, 0.2, 0.4), d)); }
 
   function updateRing(seconds, total) {
-    const progress = seconds / total;
+    const progress = Math.max(0, seconds / total);
     const offset = CIRCUMFERENCE * (1 - progress);
     document.getElementById('timerRing').style.strokeDashoffset = offset;
   }
 
-  function updateTimerDisplay(seconds, total) {
-    document.getElementById('timerCount').textContent = seconds;
-    updateRing(seconds, total);
-    const ring = document.getElementById('timerRing');
-    const status = document.getElementById('timerStatus');
-    ring.classList.remove('warning', 'done');
-    status.classList.remove('rest', 'warning', 'done');
-
-    if (timerPhase === 'rest') {
-      ring.style.stroke = '#2A9D8F';
-      status.textContent = 'Rest — Walk it out';
-      status.classList.add('rest');
-    } else if (seconds <= 15 && seconds > 0) {
-      ring.classList.add('warning');
-      status.textContent = 'Almost done — push through';
-      status.classList.add('warning');
-    } else if (seconds === 0) {
-      ring.classList.add('done');
-      status.textContent = timerPhase === 'work' ? 'Time! Next exercise.' : 'Rest over — GO';
-      status.classList.add('done');
-    } else {
-      ring.style.stroke = '';
-      status.textContent = timerPhase === 'work' ? 'Working' : 'Rest — Walk it out';
+  function updateDots() {
+    for (let i = 0; i < 5; i++) {
+      const dot = document.getElementById('td' + i);
+      dot.className = 'timer-dot';
+      if (i < currentExercise) dot.classList.add('done-dot');
+      else if (i === currentExercise && timerPhase === 'work') dot.classList.add('active');
     }
+  }
+
+  function getExercises() {
+    return posKeys.map(k => document.getElementById('sum-' + k).textContent);
+  }
+
+  function updateTimerUI() {
+    const exercises = getExercises();
+    const ring = document.getElementById('timerRing');
+    const phaseEl = document.getElementById('timerPhase');
+    const exName = document.getElementById('timerExName');
+    const nextEl = document.getElementById('timerNext');
+    const circInfo = document.getElementById('circuitInfo');
+
+    ring.className = 'timer-ring-progress';
+
+    if (timerPhase === 'work') {
+      circInfo.textContent = `Circuit ${currentCircuit} of ${settings.circuits} · Exercise ${currentExercise + 1} of 5`;
+      exName.textContent = exercises[currentExercise] !== '—' ? exercises[currentExercise] : posLabels[currentExercise];
+      phaseEl.textContent = 'Working';
+      phaseEl.className = 'timer-phase-label working';
+      const nextIdx = currentExercise + 1;
+      if (nextIdx < 5) nextEl.innerHTML = `Next: <span>${exercises[nextIdx] !== '—' ? exercises[nextIdx] : posLabels[nextIdx]}</span>`;
+      else nextEl.innerHTML = `Next: <span>Rest between circuits</span>`;
+      updateRing(timerSeconds, settings.work);
+      if (timerSeconds <= 10) ring.classList.add('warning');
+    } else if (timerPhase === 'rest') {
+      const nextIdx = currentExercise;
+      circInfo.textContent = `Rest · Next up: ${posLabels[nextIdx]}`;
+      exName.textContent = 'Rest';
+      phaseEl.textContent = 'Walk it out';
+      phaseEl.className = 'timer-phase-label resting';
+      nextEl.innerHTML = `Next: <span>${exercises[nextIdx] !== '—' ? exercises[nextIdx] : posLabels[nextIdx]}</span>`;
+      ring.classList.add('rest-phase');
+      updateRing(timerSeconds, settings.rest);
+    } else if (timerPhase === 'circuit-rest') {
+      circInfo.textContent = `Circuit ${currentCircuit - 1} done · Rest before circuit ${currentCircuit}`;
+      exName.textContent = 'Circuit Rest';
+      phaseEl.textContent = 'Recover — Walk it out';
+      phaseEl.className = 'timer-phase-label resting';
+      nextEl.innerHTML = `Next: <span>Circuit ${currentCircuit} starts soon</span>`;
+      ring.classList.add('rest-phase');
+      updateRing(timerSeconds, settings.rest * 2);
+    } else if (timerPhase === 'done') {
+      circInfo.textContent = 'Session complete';
+      exName.textContent = '🏆 Done';
+      phaseEl.textContent = 'All circuits complete';
+      phaseEl.className = 'timer-phase-label done';
+      nextEl.innerHTML = `<span>Log your session below</span>`;
+      updateRing(1, 1);
+      ring.style.stroke = '#6DC98C';
+    }
+
+    document.getElementById('timerCount').textContent = timerSeconds;
+    updateDots();
+  }
+
+  function startNextExercise() {
+    timerPhase = 'work';
+    timerSeconds = settings.work;
+    updateTimerUI();
+  }
+
+  function startRest(isCircuitRest) {
+    timerPhase = isCircuitRest ? 'circuit-rest' : 'rest';
+    timerSeconds = isCircuitRest ? settings.rest * 2 : settings.rest;
+    updateTimerUI();
   }
 
   function timerToggle() {
-    // Unlock audio on first tap
     try { getAudioCtx().resume(); } catch(e) {}
 
+    if (timerPhase === 'idle' || timerPhase === 'done') {
+      // Check exercises spun
+      const exercises = getExercises();
+      if (exercises.every(e => e === '—')) { alert('Spin the wheel first.'); return; }
+      timerReset();
+      currentExercise = 0;
+      currentCircuit = 1;
+      startNextExercise();
+      timerRunning = true;
+      requestWakeLock();
+      document.getElementById('timerStartBtn').textContent = 'Pause';
+      runTick();
+      return;
+    }
+
     if (timerRunning) {
-      clearInterval(timerInterval);
-      timerInterval = null;
+      clearInterval(timerInterval); timerInterval = null;
       timerRunning = false;
       document.getElementById('timerStartBtn').textContent = 'Resume';
+      releaseWakeLock();
     } else {
       timerRunning = true;
+      requestWakeLock();
       document.getElementById('timerStartBtn').textContent = 'Pause';
-      const total = timerPhase === 'work' ? 60 : 120;
-
-      timerInterval = setInterval(() => {
-        timerSeconds--;
-
-        // Warning at 15 seconds remaining during work phase
-        if (timerPhase === 'work' && timerSeconds === 15) warningBeep();
-
-        updateTimerDisplay(timerSeconds, total);
-
-        if (timerSeconds <= 0) {
-          clearInterval(timerInterval);
-          timerInterval = null;
-          timerRunning = false;
-
-          if (timerPhase === 'work') {
-            doneBeep();
-            if (restEnabled) {
-              timerPhase = 'rest';
-              timerSeconds = 120;
-              updateTimerDisplay(120, 120);
-              document.getElementById('timerStartBtn').textContent = 'Start Rest';
-            } else {
-              document.getElementById('timerStartBtn').textContent = 'Next';
-            }
-          } else {
-            restDoneBeep();
-            timerPhase = 'work';
-            timerSeconds = 60;
-            updateTimerDisplay(60, 60);
-            document.getElementById('timerStartBtn').textContent = 'Start';
-          }
-        }
-      }, 1000);
+      runTick();
     }
   }
 
+  function runTick() {
+    timerInterval = setInterval(() => {
+      timerSeconds--;
+
+      // Warning
+      if (timerPhase === 'work' && timerSeconds === 10) warningBeep();
+
+      updateTimerUI();
+
+      if (timerSeconds <= 0) {
+        if (timerPhase === 'work') {
+          exerciseDoneBeep();
+          currentExercise++;
+
+          if (currentExercise >= 5) {
+            // Circuit done
+            currentCircuit++;
+            currentExercise = 0;
+            if (currentCircuit > settings.circuits) {
+              // All done
+              clearInterval(timerInterval); timerInterval = null;
+              timerRunning = false;
+              timerPhase = 'done';
+              timerSeconds = 0;
+              allDoneBeep();
+              releaseWakeLock();
+              updateTimerUI();
+              document.getElementById('timerStartBtn').textContent = 'Start Session';
+              return;
+            } else {
+              circuitDoneBeep();
+              startRest(true);
+            }
+          } else {
+            startRest(false);
+          }
+        } else {
+          // Rest done — start next exercise
+          startNextExercise();
+        }
+      }
+    }, 1000);
+  }
+
   function timerReset() {
-    clearInterval(timerInterval);
-    timerInterval = null;
+    clearInterval(timerInterval); timerInterval = null;
     timerRunning = false;
-    timerPhase = 'work';
-    timerSeconds = 60;
-    updateTimerDisplay(60, 60);
-    const status = document.getElementById('timerStatus');
-    status.textContent = 'Ready';
-    status.className = 'timer-status';
+    timerPhase = 'idle';
+    currentExercise = 0;
+    currentCircuit = 1;
+    timerSeconds = settings.work;
+    releaseWakeLock();
+
+    document.getElementById('timerCount').textContent = settings.work;
+    document.getElementById('circuitInfo').textContent = 'Ready to start';
+    document.getElementById('timerExName').textContent = 'Spin the wheel first';
+    document.getElementById('timerPhase').textContent = '—';
+    document.getElementById('timerPhase').className = 'timer-phase-label';
+    document.getElementById('timerNext').innerHTML = '&nbsp;';
+    document.getElementById('timerStartBtn').textContent = 'Start Session';
     const ring = document.getElementById('timerRing');
     ring.className = 'timer-ring-progress';
-    ring.style.stroke = '';
-    ring.style.strokeDashoffset = 0;
-    document.getElementById('timerStartBtn').textContent = 'Start';
+    ring.style.stroke = ''; ring.style.strokeDashoffset = 0;
+    updateRing(settings.work, settings.work);
+    for (let i = 0; i < 5; i++) document.getElementById('td' + i).className = 'timer-dot';
   }
 
-  function toggleRestMode(checkbox) {
-    restEnabled = checkbox.checked;
-  }
+  timerReset();
 
-  // Initialize timer display
-  updateTimerDisplay(60, 60);
-  document.getElementById('timerStatus').textContent = 'Ready';
-
-  // ── CIRCUIT COUNTER ──
+  // ── CIRCUIT LOG ──
   let circuitsDone = 0;
   function toggleCircuit(n) {
     circuitsDone = circuitsDone === n ? n - 1 : n;
     for (let i = 1; i <= 5; i++) { const d = document.getElementById('c' + i); i <= circuitsDone ? d.classList.add('done') : d.classList.remove('done'); }
   }
 
-  // ── SESSION LOG ──
+  // ── SESSION HISTORY ──
   const STORAGE_KEY = 'w-session-log';
   function getLog() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch { return []; } }
   function saveLog(log) { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(log)); } catch {} }
@@ -605,7 +796,7 @@
   function renderHistory() {
     const log = getLog(), list = document.getElementById('historyList');
     if (!log.length) { list.innerHTML = '<div class="history-empty">No sessions logged yet.<br>Your first one is next.</div>'; return; }
-    list.innerHTML = log.map(e => `<div class="history-entry"><div class="history-meta"><span class="history-date">${e.date} · ${e.time}</span><span class="history-circuits">${e.circuits} circuit${e.circuits>1?'s':''}</span></div><div class="history-loc">${e.location||''}</div><div class="history-moves"><span class="history-pill" style="color:#E07A5F">${e.moves.push}</span><span class="history-pill" style="color:#2A9D8F">${e.moves.pull}</span><span class="history-pill" style="color:#C8943A">${e.moves.post}</span><span class="history-pill" style="color:#9B7FD4">${e.moves.carry}</span><span class="history-pill" style="color:#7BAF8E">${e.moves.core}</span></div>${e.note?`<div class="history-note">"${e.note}"</div>`:''}</div>`).join('');
+    list.innerHTML = log.map(e => `<div class="history-entry"><div class="history-meta"><span class="history-date">${e.date} · ${e.time}</span><span class="history-circuits">${e.circuits} circuit${e.circuits>1?'s':''}</span></div><div class="history-loc">${e.location||''}</div><div class="history-moves"><span class="history-pill" style="color:var(--push-col)">${e.moves.push}</span><span class="history-pill" style="color:var(--pull-col)">${e.moves.pull}</span><span class="history-pill" style="color:var(--post-col)">${e.moves.post}</span><span class="history-pill" style="color:var(--carry-col)">${e.moves.carry}</span><span class="history-pill" style="color:var(--core-col)">${e.moves.core}</span></div>${e.note?`<div class="history-note">"${e.note}"</div>`:''}</div>`).join('');
   }
 
   renderHistory();
