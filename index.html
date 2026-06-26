@@ -539,7 +539,7 @@
   }
 
   // ── TIMER SETTINGS ──
-  const settings = { work: 60, rest: 60, circuits: 3 };
+  var settings = { work: 60, rest: 60, circuits: 3 };
 
   function setSetting(key, val, btn) {
     settings[key] = val;
@@ -552,14 +552,14 @@
   }
 
   // ── INTERVAL TIMER ──
-  const CIRCUMFERENCE = 395.8; // 2 * π * 63
-  let timerInterval = null;
-  let timerRunning = false;
-  let timerSeconds = 0;
-  let currentExercise = 0; // 0-4
-  let currentCircuit = 1;
-  let timerPhase = 'idle'; // idle | work | rest | done
-  let audioCtx = null;
+  var CIRCUMFERENCE = 395.8;
+  var timerInterval = null;
+  var timerRunning = false;
+  var timerSeconds = 0;
+  var currentExercise = 0;
+  var currentCircuit = 1;
+  var timerPhase = 'idle';
+  var audioCtx = null;
 
   function getAudioCtx() {
     if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
